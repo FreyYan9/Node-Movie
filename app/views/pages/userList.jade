@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				tr
+					th #
+					th 名称
+					th 注册日期
+					th 角色
+					th 查看
+					th 更新
+					th 删除
+				each user in users
+					tr
+						td #{user._id}
+						td #{user.name}
+						td #{user.createDate}
+						td #{user.role}
+						td 
+							a(target="_blank",href="../movie/#{user._id}") 查看
+						td 
+							a(target="_blank",href="../admin/update/#{user._id}") 更新
+						td 
+							button.btn.btn-defualt.btn-warning.del(type="button",data-id="#{user._id}") 删除
+							
+

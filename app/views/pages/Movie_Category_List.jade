@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-12
+				a.btn.btn-link.pull-right(href="/admin/Movie_category/new") 新增类别
+			table.table.table-hover.table-bordered
+				tr
+					th #
+					th 类别名称
+					th 查看
+					th 更新
+					th 删除
+				each cate in categorys
+					tr
+						td #{cate._id}
+						td #{cate.name}
+						td 
+							a(target="_blank",href="../movie/#{cate._id}") 查看
+						td 
+							a(target="_blank",href="../admin/update/#{cate._id}") 更新
+						td 
+							button.btn.btn-defualt.btn-warning.del(type="button",data-id="#{cate._id}") 删除
+							
+

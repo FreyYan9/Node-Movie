@@ -1,0 +1,69 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form.form-horizontal(method="post",action='/admin/movie/new')
+				if movie._id
+					input(type="hidden",name="movie[_id]",value=movie._id)
+				.form-group
+					lable.col-sm-2.control-label(for="inputTitle") 电影名称
+					.col-sm-10
+						input#inputTitle.form-control(type="text",name="movie[title]",value=movie.title)
+
+				.form-group
+					lable.col-sm-2.control-label(for="category") 电影分类
+					.col-sm-10
+						input#category.form-control(type="text",name="movie[category1]",value=movie.category)
+				.form-group
+					lable.col-sm-2.control-label(for="category") 电影分类
+					.col-sm-10
+						each cate in category
+							label.radio-inline
+								input(type="radio",name="movie[category]",value=cate._id)
+								| #{cate.name}
+				.form-group
+					lable.col-sm-2.control-label(for="doctor") 导演
+					.col-sm-10
+						input#doctor.form-control(type="text",name="movie[doctor]",value=movie.doctor)
+
+				.form-group
+					lable.col-sm-2.control-label(for="country") 国家
+					.col-sm-10
+						input#country.form-control(type="text",name="movie[country]",value=movie.country)
+
+				.form-group
+					lable.col-sm-2.control-label(for="language") 语言
+					.col-sm-10
+						input#language.form-control(type="text",name="movie[language]",value=movie.language)
+
+				.form-group
+					lable.col-sm-2.control-label(for="summary") 演员
+					.col-sm-10
+						input#summary.form-control(type="text",name="movie[summary]",value=movie.summary)
+
+				.form-group
+					lable.col-sm-2.control-label(for="year") 上映年份
+					.col-sm-10
+						input#year.form-control(type="text",name="movie[year]",value=movie.year)
+
+				.form-group
+					lable.col-sm-2.control-label(for="poster") 海报地址
+					.col-sm-10
+						input#poster.form-control(type="text",name="movie[poster]",value=movie.poster)
+					
+				.form-group
+					lable.col-sm-2.control-label(for="flash") 资源地址
+					.col-sm-10
+						input#flash.form-control(type="text",name="movie[flash]",value=movie.flash)
+
+				.form-group
+					lable.col-sm-2.control-label(for="desc") 简介
+					.col-sm-10
+						textarea#desc.form-control(type="text",name="movie[desc]")= movie.desc
+
+				.form-group
+					button.col-sm-4.col-sm-offset-4.btn.btn-defualt 提交
+
+							
+

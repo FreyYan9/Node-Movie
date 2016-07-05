@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				tr
+					th #
+					th 电影名称
+					th 导演
+					th 国家
+					th 语言
+					th 演员
+					th 上映年份
+					th 查看
+					th 更新
+					th 删除
+				each movie in movies
+					tr
+						td #{movie._id}
+						td #{movie.title}
+						td #{movie.doctor}
+						td #{movie.country}
+						td #{movie.language}
+						td #{movie.summary}
+						td #{movie.year}
+						td 
+							a(target="_blank",href="/movie/#{movie._id}") 查看
+						td 
+							a(target="_blank",href="/admin/movie/update/#{movie._id}") 更新
+						td 
+							button.btn.btn-defualt.btn-warning.del(type="button",data-id="#{movie._id}") 删除
+	
+
+	script(src="/js/admin.js")
+							
+
