@@ -6,6 +6,12 @@ block content
 			form.form-horizontal(method="post",action='/admin/movie/new')
 				if movie._id
 					input(type="hidden",name="movie[_id]",value=movie._id)
+
+				.form-group
+					lable.col-sm-2.control-label(for="douban") 电影检索
+					.col-sm-10
+						input#douban.form-control(type="text", placeholder="请输入电影ID")
+
 				.form-group
 					lable.col-sm-2.control-label(for="inputTitle") 电影名称
 					.col-sm-10
@@ -14,14 +20,18 @@ block content
 				.form-group
 					lable.col-sm-2.control-label(for="category") 电影分类
 					.col-sm-10
-						input#category.form-control(type="text",name="movie[category1]",value=movie.category)
+						input#category.form-control(type="text",name="movie[categoryName]",value=movie.categoryName,placeholder="如果没有可选的分类, 可在此新增")
 				.form-group
 					lable.col-sm-2.control-label(for="category") 电影分类
 					.col-sm-10
 						each cate in category
 							label.radio-inline
-								input(type="radio",name="movie[category]",value=cate._id)
-								| #{cate.name}
+								if movie._id
+									input(type="radio",name="movie[category]",value=cate._id,checked=cate._id.toString() == movie.category.toString() )
+									| #{cate.name}
+								else
+									input(type="radio",name="movie[category]",value=cate._id)
+									| #{cate.name}
 				.form-group
 					lable.col-sm-2.control-label(for="doctor") 导演
 					.col-sm-10
@@ -66,4 +76,4 @@ block content
 					button.col-sm-4.col-sm-offset-4.btn.btn-defualt 提交
 
 							
-
+	script(src="/js/admin.js")

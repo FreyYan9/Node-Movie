@@ -8,7 +8,7 @@ exports.new = function(req, res){
 		}
 	});
 }
-
+  
 
 exports.save = function(req, res){
 	var _cate = req.body.category;

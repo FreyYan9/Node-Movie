@@ -18,6 +18,8 @@ module.exports = function(app){
 
 	// index page  
 	app.get('/' , index.index);
+	//分类 & 分页
+	app.get("/results",index.search)
 
 	// Movie
 	app.get('/movie/:id' , movie.detail);
@@ -60,5 +62,7 @@ module.exports = function(app){
 
 
 	/*					分类操作  end 				*/
+
+
 
 }

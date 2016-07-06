@@ -2,8 +2,17 @@
 	.row
 		.page-header
 			h1 #{title}
-			small 重度科幻迷
-.navbar.navbar-default.navbar-fixed-bottom(style="height:30px;")
+			small 电影爱好者
+
+	.row
+		a.btn.btn-link(href="/") 首页
+		a.btn.btn-link(href="/admin/movie/new") 新增电影
+		a.btn.btn-link(href="/admin/movie/list") 电影目录
+		a.btn.btn-link(href="/userList") 用户列表
+		a.btn.btn-link(href="/admin/Movie_category/new") 新增分类
+		a.btn.btn-link(href="/admin/Movie_category/list") 分类列表
+	hr
+.navbar.navbar-default.navbar-fixed-bottom
 	.container
 		.navbar-header
 			a.navbar-brand(href="/") 重度科幻迷

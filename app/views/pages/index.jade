@@ -4,16 +4,17 @@ block content
 	.container
 		.row
 			each cate in categorys
-				.panel.panel-primary
-					.panel-hedaing
-						h3 #{cate.name}
+				.panel.panel-default
+					.panel-heading
+						h3
+							a(href="/results?cat=#{cate._id}&pageIndex=0") #{cate.name}
 					.panel-body
-						if cate.movies && cate.movies.length>0
+						if cate.movies && cate.movies.length > 0
 							each item in cate.movies
 								.col-md-2
 									.thumbnail
 										a(href="/movie/#{item._id}",)
-											img(src="#{item.poster}",alt="#{item.title}")
+											img(src="#{item.poster}",alt="#{item.title}",style="width:150px;height:222px;")
 										.caption
-											h3 #{item.title}
-											p: a.btn.btn-primary(href="/movie/#{item._id}",role="button") 观看预告片
+											h3(style="overflow: hidden;	white-space: nowrap;	text-overflow: ellipsis;", title="#{item.title}") #{item.title}
+											p: a.btn.btn-primary.text-center(href="/movie/#{item._id}",role="button",style="width:130px;") 观看
