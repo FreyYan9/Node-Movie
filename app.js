@@ -2,19 +2,27 @@ var express = require("express");
 var mongoDB = require("mongoose");
 var mongoStore = require("connect-mongo")(express);
 var path = require("path");
+var fs  = require("fs");
 
-
-
+//使用设置的端口或者默认3000
 var port = process.env.PORT || 3000;
 var app = express();
+//监听端口
 var server = app.listen(port);
 var date = getDate();
- 
+//指定视图文件地址
 app.set("views","./app/views/pages");
+//设置模版引擎
 app.set("view engine","jade");
+//配置静态资源路径
 app.use(express.static(path.join(__dirname,"public")));
-app.use(express.bodyParser());	
+//表单传送需要用到
+app.use(express.bodyParser());
+//使用sisson需要用到
 app.use(express.cookieParser());
+//表单上传需要用到
+app.use(express.multipart());
+
 app.use(express.session({
 	secret : "iMovie",
 	store : new mongoStore({

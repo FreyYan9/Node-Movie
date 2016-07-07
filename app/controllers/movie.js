@@ -2,6 +2,9 @@ var moviePort = require("../models/movie");
 var comment = require("../models/comment");
 var category = require("../models/Movie_Category");
 var _ = require("underscore");
+var path = require("path");
+var fs  = require("fs");
+
 /*
  电影操作 begin
  */
@@ -11,6 +14,14 @@ var _ = require("underscore");
 // detail page
 exports.detail = function (req, res) {
     var _id = req.params.id;
+
+    console.log(moviePort.updatePv(_id));
+    //moviePort.update({_id :_id},{$inc : {pv : 1}}, function (err, obj) {
+    //    if (err)
+    //        console.log(err)
+    //    console.log(obj)
+    //})
+
     moviePort.getById(_id, function (movie) {
 
         comment.getByMovie(_id)
@@ -61,10 +72,39 @@ exports.list = function (req, res) {
 };
 
 
+//poster upload
+exports.uploadPoster = function (req, res, next) {
+    var poster = req.files.uploadPoster;
+    var filePath = poster.path;
+    var oldName = poster.originalFilename;
+    var timestamp = Date.now();
+    var type = poster.type.split("/")[1];
+    var newName = timestamp + "." + type;
+    var newPath = path.join(__dirname , "../../", "public/img/" + newName);
+
+
+    if(oldName){
+        fs.readFile(filePath, function (err, data) {
+            fs.writeFile(newPath,data, function (err) {
+                req.session.newName = newName;
+                next();
+            });
+        })
+    }else {
+        next();
+    }
+}
+
+
 //page post to add 
 exports.save = function (req, res) {
     var id = req.body.movie._id;
     var movieObj = req.body.movie;
+
+    if(req.session.newName){
+        movieObj.poster = req.session.newName;
+    }
+
     if (id) {
         moviePort.getById(id, function (movie) {
             var _movie = _.extend(movie, movieObj);
@@ -113,7 +153,7 @@ exports.update = function (req, res) {
     if (id) {
         moviePort.getById(id, function (movie) {
             category.getAll().exec(function (err, cate) {
-                console.log(cate)
+                //console.log(cate)
                 res.render("admin", {
                     title: "Movie 后台录入",
                     category: cate,

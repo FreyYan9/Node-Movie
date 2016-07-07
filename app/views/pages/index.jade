@@ -14,7 +14,10 @@ block content
 								.col-md-2
 									.thumbnail
 										a(href="/movie/#{item._id}",)
-											img(src="#{item.poster}",alt="#{item.title}",style="width:150px;height:222px;")
+											if(item.poster.indexOf('https') > -1)
+												img(src="#{item.poster}",alt="#{item.title}",style="width:150px;height:222px;")
+											else
+												img(src="/img/#{item.poster}",alt="#{item.title}",style="width:150px;height:222px;")
 										.caption
 											h3(style="overflow: hidden;	white-space: nowrap;	text-overflow: ellipsis;", title="#{item.title}") #{item.title}
 											p: a.btn.btn-primary.text-center(href="/movie/#{item._id}",role="button",style="width:130px;") 观看

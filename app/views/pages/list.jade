@@ -12,6 +12,7 @@ block content
 					th 语言
 					th 演员
 					th 上映年份
+					th PV
 					th 查看
 					th 更新
 					th 删除
@@ -24,6 +25,7 @@ block content
 						td #{movie.language}
 						td #{movie.summary}
 						td #{movie.year}
+						td #{movie.pv}
 						td 
 							a(target="_blank",href="/movie/#{movie._id}") 查看
 						td 

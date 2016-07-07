@@ -26,7 +26,7 @@ module.exports = function(app){
 	app.get('/admin/movie/new' , user.isSignin, user.isRole,movie.new);
 	app.get('/admin/movie/list' , user.isSignin, user.isRole, movie.list);
 	app.get("/admin/movie/update/:id" , user.isSignin, user.isRole,movie.update);
-	app.post("/admin/movie/new" , user.isSignin, user.isRole,movie.save);
+	app.post("/admin/movie/new" , user.isSignin, user.isRole,movie.uploadPoster,movie.save);
 	app.delete("/admin/list/:id" , user.isSignin, user.isRole,movie.del);
 
 	/*					电影操作 end 				*/

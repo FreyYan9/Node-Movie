@@ -16,6 +16,10 @@ var movieSchema = new Schema({
 		type : ObjectId,
 		ref : "Movie_Category"
 	},
+	pv : {
+		type : Number,
+		default : 0
+	},
 	meta : {
 		createDate : {
 			type : Date,
@@ -56,6 +60,10 @@ movieSchema.statics = {
             	});
 
             })
+	},
+	updatePv : function (id) {
+		//console.log(id)
+		this.update({_id :id},{$inc : {pv : 1}}, function () {})
 	}
 }
 
