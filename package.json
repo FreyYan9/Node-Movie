@@ -7,7 +7,9 @@
     "bcrypt-nodejs": "0.0.3",
     "connect-mongo": "^1.2.1",
     "express": "^3.0.6",
+    "grunt-mocha-test": "^0.12.7",
     "jade": "^1.11.0",
+    "mocha": "^2.5.3",
     "mongoose": "^4.5.2",
     "underscore": "^1.8.3"
   },
